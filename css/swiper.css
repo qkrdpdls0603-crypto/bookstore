@@ -5,20 +5,44 @@ body {
 }
 
 body {
-    background: #000;
     font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
     font-size: 14px;
-    color: #fff;
+    color: #333;
     margin: 0;
     padding: 0;
 }
 
-.swiper {
+
+/* #slider */
+#slider .swiper {
     width: 100%;
     height: 100%;
 }
 
-.swiper-slide {
+#slider .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#slider .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* #new */
+#new .swiper {
+    width: 100%;
+    height: 100%;
+    
+}
+
+#new .swiper-slide {
     text-align: center;
     font-size: 18px;
     background: #444; /* 슬라이드 배경색 */
@@ -27,7 +51,7 @@ body {
     align-items: center;
 }
 
-.swiper-slide img {
+#new .swiper-slide img {
     display: block;
     width: 100%;
     height: 100%;
