@@ -13,6 +13,7 @@ body {
 }
 
 
+
 /* #slider */
 #slider .swiper {
     width: 100%;
@@ -35,6 +36,8 @@ body {
 }
 
 
+
+
 /* #new */
 #new .swiper {
     width: 100%;
@@ -49,6 +52,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 
 #new .swiper-slide img {
@@ -57,3 +61,93 @@ body {
     height: 100%;
     object-fit: cover;
 }
+
+
+/* #best */
+#best .swiper {
+    width: 100%;
+    height: 100%;
+    
+}
+
+#best .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: tomato; /* 슬라이드 배경색 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+#best .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* #goods */
+#goods .swiper {
+    width: 100%;
+    height: 100%;
+    
+}
+
+#goods .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #444; /* 슬라이드 배경색 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+#goods .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* 1. 화살표 버튼 자체의 크기 (클릭 영역) 조절 */
+.swiper-button-next,
+.swiper-button-prev {
+    width: 30px !important;   /* 버튼 박스 너비 */
+    height: 30px !important;  /* 버튼 박스 높이 */
+    border-radius: 50%;
+    margin-top: -15px !important; /* 세로 중앙 정렬 보정 */
+    
+    /* 평상시 숨김 처리 */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+/* 2. 실제 화살표 모양(아이콘) 사이즈 줄이기 - 핵심! */
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    font-size: 14px !important; /* 화살표가 확 작아집니다 */
+    font-weight: bold !important;
+    color: #fff !important;      /* 화살표 색상 */
+}
+
+/* 3. 섹션 호버 시 화살표 나타나기 */
+#slider:hover .swiper-button-next,
+#slider:hover .swiper-button-prev,
+#new:hover .swiper-button-next,
+#new:hover .swiper-button-prev,
+#best:hover .swiper-button-next,
+#best:hover .swiper-button-prev,
+#goods:hover .swiper-button-next,
+#goods:hover .swiper-button-prev {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 4. 화살표 위치 미세 조정 (이미지 안쪽으로) */
+.swiper-button-next { right: 15px !important; }
+.swiper-button-prev { left: 15px !important; }
