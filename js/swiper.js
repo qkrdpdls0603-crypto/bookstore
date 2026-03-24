@@ -1,4 +1,6 @@
 // Swiper 초기화
+
+
 var swiper = new Swiper(".mySwiper", {
     // 페이지네이션 설정 (분수 형태: 1 / 9)
     pagination: {
@@ -19,6 +21,10 @@ var swiper = new Swiper(".mySwiper", {
     },
     loop: true,
 });
+
+
+
+
 
 var swiper = new Swiper(".new", {
     
