@@ -3,30 +3,7 @@
 .container {
     width: 1030px;
     margin: 0 auto;
-    overflow: hidden;
-}
-
-.slider_content h4 {
-    display: -webkit-box;
-    -webkit-line-clamp: 2; 
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    height: 2.8em; /* 2줄 높이 고정 (정렬용) */
-    font-size: 18px;
-    margin-bottom: 5px;
-    line-height: 1.4;
-}
-
-/* 지은이: 1줄 유지 후 ... 처리 */
-.slider_content h6 {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-size: 14px;
-    color: #888;
-    width: 100%;
-    display: block;
+    overflow: visible;
 }
 
 
@@ -223,134 +200,88 @@ header input[type="text"] {
     color: #53a3ff;     
 }
 
+/* ------------------------------------------------------------------------------------------------------ */
 
 
 
-/* main */
-main .container:nth-of-type(2){
+.price-container {
     display: flex;
-    justify-content: space-between; /* 양 끝으로 벌리기 */
-    align-items: flex-start;        /* 상단 라인 맞춤 */
-    margin: 50px auto;
-}
-
-
-
-#slider {
-    width: 1030px;
-    height: 430px;
-    margin: 0 auto;
-}
-
-#new {
-    width: 700px;
-    height: 390px;
-    min-width: 0;
-}
-
-
-
-/* #rank */
-#rank {
-    width: 300px;
-    height: 390px;
-    font-size: 16px;
-}
-
-#rank h2 {
-    margin-bottom: 30px;
-}
-
-#rank ol li {
-    padding: 12px 0;
-    border-bottom: 1px solid #eee;
-}
-
-#rank .num {
-    font-size: 18px;
-    font-weight: bold;
-    color: #53a3ff; 
-    margin-right: 15px;
-    display: inline-block;
-    width: 20px;
-}
-
-#rank .txt {
-    color: #333;
-    max-width: 220px;
-}
-
-#rank .txt:hover {
-    text-decoration: underline;
-}
-
-
-/* #best */
-#best {
-    width: 1030px;
-    height: 415px;
-    margin: 50px auto;
-    }
-
-
-
-/* #goods */
-
-#goods {
-    width: 1030px;
-    height: 250px;
-    margin: 50px auto;
-    }
-
-    #goods .swiper-slide {
-    position: relative; /* 오버레이의 기준점 */
-    border-radius: 12px;
-    overflow: hidden;
-    cursor: pointer;
-}
-
-#goods .swiper-slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.3s ease; /* 이미지 살짝 커지는 효과용 */
-}
-
-    /* 1. 오버레이 초기 상태 (숨김) */
-.goods-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.7); 
-    display: flex;
-    justify-content: center;
     align-items: center;
-    
-    opacity: 0; 
-    transition: all 0.3s ease;
+    gap: 10px; /* 숫자 사이 간격 */
+    margin-top: 20px;
 }
 
-/* 2. 텍스트 스타일 */
-.goods-overlay span {
-    color: #333;
-    font-size: 16px;
-    font-weight: bold;
-    padding: 8px 15px;
+.original-price {
+    text-decoration: line-through; /* 취소선 */
+    color: #999;
 }
 
-/* 3. 마우스 호버 시 효과 */
-#goods .swiper-slide:hover .goods-overlay {
-    opacity: 1; 
-}
-
-#goods .swiper-slide:hover img {
-    transform: scale(1.1); 
+.sale-price {
+    font-size: 24px;
+    font-weight: regular;
+    color: #ff448b; /* 강조 빨간색 */
 }
 
 
+
+
+
+/* 1. 책의 두께 정의 (변수로 관리하면 편리합니다) */
+:root {
+    --book-thickness: 30px; /* 책의 두께 */
+}
+
+.book-inner {
+    position: relative;
+    width: 250px;
+    height: 350px;
+    transform-style: preserve-3d;
+    transition: transform 0.8s ease;
+    /* 회전축을 왼쪽 끝(책등)으로 고정 */
+    transform-origin: left center; 
+}
+
+/* 2. 앞면: 두께의 절반만큼 앞으로 밀기 */
+.book-front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    /* 앞면을 Z축으로 살짝 띄워야 옆면과 만납니다 */
+    transform: translateZ(calc(var(--book-thickness) / 2));
+}
+
+/* 3. 옆면 (책등): 90도 돌려서 왼쪽 끝에 배치 */
+.book-side {
+    position: absolute;
+    width: var(--book-thickness); /* 책의 두께만큼 너비 설정 */
+    height: 100%;
+    left: calc(var(--book-thickness) / -2); /* 두께의 절반만큼 왼쪽으로 */
+    z-index: 1;
+    /* Y축으로 -90도 돌려야 앞면과 수직이 됩니다 */
+    transform: rotateY(-90deg);
+}
+
+.book-side img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 이미지가 영역에 꽉 차게 */
+}
+
+/* 4. 마우스 호버 시: 약간 비스듬히 돌려야 옆면이 보입니다 */
+.book-container:hover .book-inner {
+    /* -180도로 완전히 돌리기 전에 -20도 정도에서 옆면을 확인해보세요 */
+    transform: rotateY(-45deg); /* 테스트용: 45도만 돌려보세요 */
+}
+
+
+
+
+
+
+
+
+/* ---------------------------------------------------------------------------------------------------------- */
 
 .btn-top {
     position: fixed;    /* 브라우저 화면에 고정 */
@@ -382,6 +313,8 @@ main .container:nth-of-type(2){
     background-color: #333;
     transform: translateY(-5px);
 }
+
+
 
 
 
@@ -422,6 +355,8 @@ footer nav ul {
 
 #info h2 {
     margin-bottom: 15px;
+    font-size: 21px;
+    color: #333;
 }
 
 footer #info ul {
@@ -446,7 +381,8 @@ footer #info ul li {
 
 #contact h2 {
     margin-bottom: 15px;
-   
+    font-size: 21px;
+    color: #333;
 }
 
 #contact ul {

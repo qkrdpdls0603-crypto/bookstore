@@ -20,7 +20,7 @@ body {
     height: 100%;
 }
 
-#slider .swiper-slide {
+#slider .swiper-slide a {
     text-align: center;
     font-size: 18px;
     display: flex;
@@ -28,13 +28,12 @@ body {
     align-items: center;
 }
 
-#slider .swiper-slide img {
+#slider .swiper-slide a img {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
-
 
 
 
