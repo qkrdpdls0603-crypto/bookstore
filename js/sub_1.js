@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", async () => {
-    const query = "살찌지 않는 몸"; 
+    const query = "살찌지 않는 몸";
     const API_KEY = "b30c8fbac4a4a5fac8a7b7ad20568496";
 
     try {
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         // [1] 상단 정보 출력
         const authorsEl = document.getElementById('authors');
         if (authorsEl) authorsEl.innerText = `${book.authors.join(", ")} (지은이)`;
-        
+
         const datetimeEl = document.getElementById('datetime');
         if (datetimeEl) datetimeEl.innerText = `${book.datetime.slice(0, 10)} 출간`;
 
@@ -42,4 +42,32 @@ document.addEventListener("DOMContentLoaded", async () => {
     } catch (error) {
         console.error("API 호출 중 에러:", error);
     }
+
+
+
+    try {
+        const response = await fetch("./txt/sub1_1.txt");
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.text();
+        document.getElementById('select').innerHTML = data;
+    } catch (error) {
+        console.error('There was a problem with the fetch operation:', error);
+    }
+
+    try {
+        const response = await fetch("./txt/sub1_2.txt");
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.text();
+        document.getElementById('introduce').innerHTML = data;
+    } catch (error) {
+        console.error('There was a problem with the fetch operation:', error);
+    }
 });
+
+document.querySelector('.book-container').addEventListener('click', function() {
+    this.classList.toggle('flipped');
+})

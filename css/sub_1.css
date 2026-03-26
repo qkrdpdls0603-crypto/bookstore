@@ -1,208 +1,5 @@
 @charset "utf-8";
 
-.container {
-    width: 1030px;
-    margin: 0 auto;
-    overflow: visible;
-}
-
-
-/* header */
-header {
-    width: 100%;
-    height: 175px;
-    border-bottom: 1px solid #53a3ff;
-    }
-
-header .container {
-    display: flex;
-    flex-direction: column; 
-    justify-content: center;
-    height: 100%;
-    overflow: visible;
-}
-
-
-
-header .top-bar {  
-    display: flex;
-    justify-content: space-between; /* 오른쪽 정렬 */
-    align-items: center;       /* 로그인과 메뉴의 세로 중앙 맞춤 */
-    gap: 20px;                 /* 로그인과 메뉴 사이의 간격 */
-    margin-bottom: 25px;       /* 로고/검색창과의 사이 간격 */
-
-}
-
-#login {
-    width: 200px; /* 적절한 너비 설정 */
-    height: 20px;  
-}
-
-#login ul {
-    display: flex;       /* 가로 정렬 */
-    gap: 15px;           /* 아이콘 사이의 간격 */
-    align-items: center; /* 세로 중앙 정렬 */
-    justify-content: flex-end;
-}
-
-#login img {
-    width: 25px;  /* 원하는 가로 너비 */
-    height: 25px; /* 원하는 세로 높이 */
-    object-fit: contain; /* 이미지가 찌그러지지 않게 비율 유지 */
-    vertical-align: middle; /* 텍스트와 줄을 맞출 때 유용 */
-    
-}
-
-
-header nav {
-    height: auto; 
-}
-
-header nav ul {
-    display: flex; 
-    gap: 20px; /* 메뉴 글자들 사이 간격 */
-    
-}
-
-header nav ul li {
-    position: relative;
-}
-
-header nav ul li a {
-    font-weight: bold;
-    font-size: 16px;
-    color: #53a3ff;
-    padding: 10px;
-    border-radius: 20px;
-}
-
-header nav ul li a:hover {
-    color: #fff;
-    background-color: #53a3ff;   
-}
-
-
-
-/* 1. 서브 메뉴 박스 설정 */
-.sub-menu {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%) translateY(10px);
-    background: #fff;
-    width: 140px; 
-    
-    /* 중요: 부모의 flex 성질이 영향을 주지 않도록 설정 */
-    display: block !important; 
-    flex-direction: column; 
-    
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    border-radius: 8px;
-    padding: 10px 0;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    z-index: 1000;
-}
-
-.sub-menu li {
-    width: 100%; /* 부모 폭에 꽉 차게 */
-    display: block; /* 한 줄에 하나씩 쌓이도록 */
-}
-
-/* 마우스 호버 시 출력 */
-nav > ul > li:hover .sub-menu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) translateY(0);
-}
-
-.sub-menu li a {
-    display: block;
-    padding: 12px 15px; /* 세로 간격을 넉넉히 주면 더 보기 좋습니다 */
-    font-size: 14px;
-    color: #555;
-    text-align: center; /* 텍스트 중앙 정렬 */
-    
-    /* 글자가 길어질 경우 두 줄로 자연스럽게 넘어가게 함 */
-    white-space: normal; 
-    word-break: keep-all; 
-    line-height: 1.4;
-    
-    transition: 0.2s;
-}
-
-
-.sub-menu li a:hover {
-    background: #f8f9fa;
-    color: #53a3ff; /* 포인트 컬러로 변경 */
-    padding-left: 15px; /* 변경: 세로형일 때는 좌측 밀림보다 색상 변화가 더 깔끔합니다 */
-    font-weight: bold;
-}
-
-
-header .bottom-bar {
-    display: flex;
-    align-items: center; /* 로고와 검색창 높이 중앙 맞춤 */
-    gap: 30px;           /* 로고와 검색창 사이 간격 */
-}
-
-#logo {
-    flex-shrink: 0;      /* 로고 크기가 줄어들지 않게 고정 */
-}
-
-/* 검색창 바구니 (부모) */
-.search-box {
-    position: relative;
-    flex-grow: 1;
-    display: flex; /* 내부 요소들을 가로로 나열 */
-    align-items: center;
-    border: 2px solid #53a3ff; /* 알라딘 포인트 컬러 */
-    border-radius: 25px;       /* 전체를 둥글게 */
-    overflow: hidden;          /* 내부 자식들이 튀어나가지 않게 */
-    background-color: #fff;
-}
-
-/* 카테고리 선택 박스 스타일 */
-.search-category {
-    width: 100px;
-    height: 45px;
-    padding-left: 15px;
-    border: none;              /* 기존 테두리 제거 */
-    background-color: #f8f9fa; /* 배경색으로 구분감 주기 */
-    font-size: 14px;
-    font-weight: bold;
-    color: #333;
-    outline: none;
-    cursor: pointer;
-    border-right: 1px solid #ddd; /* 입력창과의 경계선 */
-}
-
-header input[type="text"] {
-    flex-grow: 1;              /* 남은 공간 다 차지 */
-    height: 45px;
-    padding: 0 50px 0 15px;    /* 돋보기 자리를 위해 오른쪽 패딩 유지 */
-    border: none;              /* 중복 테두리 제거 */
-    outline: none;
-    font-size: 16px;
-}
-
-/* 돋보기 버튼 스타일 */
-.search-btn {
-    position: absolute;
-    right: 15px;        
-    top: 50%;
-    transform: translateY(-50%); 
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 20px;     
-    color: #53a3ff;     
-}
-
-/* ------------------------------------------------------------------------------------------------------ */
-
-
 
 .price-container {
     display: flex;
@@ -226,210 +23,61 @@ header input[type="text"] {
 
 
 
-/* 1. 책의 두께 정의 (변수로 관리하면 편리합니다) */
 :root {
-    --book-thickness: 30px; /* 책의 두께 */
+    --book-thickness: 40px; /* 옆면(책등)의 너비 */
+    --book-width: 250px;    /* 앞표지의 너비 */
+    --book-height: 350px;   /* 책의 높이 */
+}
+
+.book-container {
+    perspective: 1500px; /* 입체감을 위한 필수 속성 */
+    width: var(--book-width);
+    height: var(--book-height);
+    margin: 50px auto;
 }
 
 .book-inner {
     position: relative;
-    width: 250px;
-    height: 350px;
+    width: 100%;
+    height: 100%;
     transform-style: preserve-3d;
-    transition: transform 0.8s ease;
-    /* 회전축을 왼쪽 끝(책등)으로 고정 */
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    
+    /* [수정] 회전축을 왼쪽 끝(책등)으로 고정 */
     transform-origin: left center; 
 }
 
-/* 2. 앞면: 두께의 절반만큼 앞으로 밀기 */
+/* 1. 앞표지: 중심 (Z축 0점 고정) */
 .book-front {
     position: absolute;
     width: 100%;
     height: 100%;
+    background-color: #ddd; /* 확인용 색상 */
     z-index: 2;
-    /* 앞면을 Z축으로 살짝 띄워야 옆면과 만납니다 */
-    transform: translateZ(calc(var(--book-thickness) / 2));
+    transform: translateZ(0); /* 기준점 */
 }
 
-/* 3. 옆면 (책등): 90도 돌려서 왼쪽 끝에 배치 */
+/* 2. 옆면 (책등): 앞표지 왼쪽 끝에서 뒤로 90도 꺾임 */
 .book-side {
     position: absolute;
-    width: var(--book-thickness); /* 책의 두께만큼 너비 설정 */
+    width: var(--book-thickness);
     height: 100%;
-    left: calc(var(--book-thickness) / -2); /* 두께의 절반만큼 왼쪽으로 */
-    z-index: 1;
-    /* Y축으로 -90도 돌려야 앞면과 수직이 됩니다 */
-    transform: rotateY(-90deg);
+    left: 0;
+    top: 0;
+    background-color: #333; /* 책등 색상 */
+    
+    /* 왼쪽 끝을 축으로 안쪽으로 90도 회전 */
+    transform-origin: left;
+    transform: rotateY(90deg);
 }
 
 .book-side img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* 이미지가 영역에 꽉 차게 */
+   transform: scaleX(-1);
+
 }
 
-/* 4. 마우스 호버 시: 약간 비스듬히 돌려야 옆면이 보입니다 */
+/* [핵심] 3. 마우스 호버 시: 입체적인 책처럼 45도 회전 */
 .book-container:hover .book-inner {
-    /* -180도로 완전히 돌리기 전에 -20도 정도에서 옆면을 확인해보세요 */
-    transform: rotateY(-45deg); /* 테스트용: 45도만 돌려보세요 */
-}
-
-
-
-
-
-
-
-
-/* ---------------------------------------------------------------------------------------------------------- */
-
-.btn-top {
-    position: fixed;    /* 브라우저 화면에 고정 */
-    bottom: 30px;       /* 하단에서 30px 띄움 */
-    right: 30px;        /* 우측에서 30px 띄움 */
-    z-index: 9999;      /* 다른 요소보다 항상 위에 있도록 설정 */
-    
-    /* 디자인 스타일 */
-    width: 50px;
-    height: 50px;
-    background-color: #53a3ff; /* 알라딘 포인트 컬러 */
-    color: #fff;
-    border-radius: 50%; /* 동그란 모양 */
-    
-    /* 중앙 정렬 */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    font-size: 12px;
-    font-weight: bold;
-    text-decoration: none;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    transition: all 0.3s ease;
-}
-
-/* 마우스 호버 시 효과 */
-.btn-top:hover {
-    background-color: #333;
-    transform: translateY(-5px);
-}
-
-
-
-
-
-
-/* footer */
-footer {
-    width: 100%;
-    background-color: #f8f8f8;
-    padding: 50px 0;
-    border-top: 1px solid #ddd;
-}
-
-
-
-footer nav {
-    height: 20px;
-    margin: 0 auto;
-}
-
-footer nav ul {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 1030px;
-    margin: 0 auto;
-}
-
-.footer-wrapper {
-    display: flex;
-    justify-content: space-between; 
-    align-items: flex-start;        
-}
-
-#info {
-    flex: 2;
-    margin-top: 20px;
-}
-
-#info h2 {
-    margin-bottom: 15px;
-    font-size: 21px;
-    color: #333;
-}
-
-footer #info ul {
-    display: flex;
-    flex-wrap: wrap; 
-    gap: 10px;
-}
-
-footer #info ul li {
-    font-size: 12px;
-    color: #777;
-    white-space: nowrap;
-}
-
-/* 2. 고객센터 정보 (#contact) 정렬 */
-#contact {
-    flex: 1; 
-    padding-left: 50px;
-    border-left: 1px solid #eee;
-    margin-top: 20px;
-}
-
-#contact h2 {
-    margin-bottom: 15px;
-    font-size: 21px;
-    color: #333;
-}
-
-#contact ul {
-    display: flex;
-    gap: 10px;       
-    margin-top: 15px;
-    flex-wrap: wrap;
-}
-
-#contact ul li {
-    font-size: 13px;
-    margin-bottom: 1px;
-    color: #777;
-    width: calc(50% - 5px);
-}
-
-#contact ul li:nth-child(1) {
-    width: 100%;
-}
-#contact ul li:nth-child(4) {
-    width: 100%;
-}
-
-#contact ul li a {
-    font-size: 13px;
-    color: #666;
-    white-space: nowrap;
-    
-    width: 100%;
-    height: 40px;
-
-    border: 1px solid #ddd; 
-    padding: 6px 12px;
-    border-radius: 4px;   /* 모서리 살짝 둥글게 */
-    
-    /* 내부 정렬 */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-    background-color: #fff;
-    transition: all 0.2s ease;
-    white-space: nowrap;
-}
-
-#contact ul li a:hover {
-    background-color: #f0f0f0;
-    border-color: #53a3ff; 
-    color: #53a3ff;
+    /* 양수(+) 방향으로 돌려야 왼쪽 옆면(책등)이 우리 쪽으로 튀어나옵니다 */
+    transform: rotateY(45deg); 
 }
