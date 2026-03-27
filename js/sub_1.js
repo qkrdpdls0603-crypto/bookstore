@@ -66,8 +66,52 @@ document.addEventListener("DOMContentLoaded", async () => {
     } catch (error) {
         console.error('There was a problem with the fetch operation:', error);
     }
+
+
+    try {
+        const response = await fetch("./txt/sub1_3.txt");
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.text();
+        document.getElementById('contents').innerHTML = data;
+    } catch (error) {
+        console.error('There was a problem with the fetch operation:', error);
+    }
+
+    try {
+        const response = await fetch("./txt/sub1_4.txt");
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.text();
+        document.getElementById('in_books').innerHTML = data;
+    } catch (error) {
+        console.error('There was a problem with the fetch operation:', error);
+    }
+
+    
+    try {
+        const response = await fetch("./txt/sub1_5.txt");
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.text();
+        document.getElementById('main_info').innerHTML = data;
+    } catch (error) {
+        console.error('There was a problem with the fetch operation:', error);
+    }
+
 });
 
-document.querySelector('.book-container').addEventListener('click', function() {
+document.querySelector('.book-container').addEventListener('click', function () {
     this.classList.toggle('flipped');
-})
+});
+
+
+var swiper = new Swiper(".mySwiper", {
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });

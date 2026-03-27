@@ -1,36 +1,44 @@
 @charset "utf-8";
 
+/* 가격정보 */
 
 .price-container {
     display: flex;
     align-items: center;
-    gap: 10px; /* 숫자 사이 간격 */
+    gap: 10px;
+    /* 숫자 사이 간격 */
     margin-top: 20px;
 }
 
 .original-price {
-    text-decoration: line-through; /* 취소선 */
+    text-decoration: line-through;
+    /* 취소선 */
     color: #999;
 }
 
 .sale-price {
     font-size: 24px;
     font-weight: regular;
-    color: #ff448b; /* 강조 빨간색 */
+    color: #ff448b;
+    /* 강조 빨간색 */
 }
 
 
-
-
+/* --------------------------------------------------------------------------- */
+/* 책 커버 */
 
 :root {
-    --book-thickness: 40px; /* 옆면(책등)의 너비 */
-    --book-width: 250px;    /* 앞표지의 너비 */
-    --book-height: 350px;   /* 책의 높이 */
+    --book-thickness: 40px;
+    /* 옆면(책등)의 너비 */
+    --book-width: 250px;
+    /* 앞표지의 너비 */
+    --book-height: 350px;
+    /* 책의 높이 */
 }
 
 .book-container {
-    perspective: 1500px; /* 입체감을 위한 필수 속성 */
+    perspective: 1500px;
+    /* 입체감을 위한 필수 속성 */
     width: var(--book-width);
     height: var(--book-height);
     margin: 50px auto;
@@ -42,9 +50,9 @@
     height: 100%;
     transform-style: preserve-3d;
     transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
-    
+
     /* [수정] 회전축을 왼쪽 끝(책등)으로 고정 */
-    transform-origin: left center; 
+    transform-origin: center right;
 }
 
 /* 1. 앞표지: 중심 (Z축 0점 고정) */
@@ -52,9 +60,10 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: #ddd; /* 확인용 색상 */
     z-index: 2;
-    transform: translateZ(0); /* 기준점 */
+    transform: translateZ(0);
+    /* 기준점 */
+    backface-visibility: hidden;
 }
 
 /* 2. 옆면 (책등): 앞표지 왼쪽 끝에서 뒤로 90도 꺾임 */
@@ -64,20 +73,102 @@
     height: 100%;
     left: 0;
     top: 0;
-    background-color: #333; /* 책등 색상 */
-    
+
     /* 왼쪽 끝을 축으로 안쪽으로 90도 회전 */
     transform-origin: left;
     transform: rotateY(90deg);
+
 }
 
 .book-side img {
-   transform: scaleX(-1);
+    transform: scaleX(-1);
 
 }
+
+.book-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    transform: rotateY(180deg) translateZ(calc(var(--book-thickness)*1.5)) translateX(calc(var(--book-thickness)*-6.2));
+    backface-visibility: hidden;
+}
+
 
 /* [핵심] 3. 마우스 호버 시: 입체적인 책처럼 45도 회전 */
 .book-container:hover .book-inner {
     /* 양수(+) 방향으로 돌려야 왼쪽 옆면(책등)이 우리 쪽으로 튀어나옵니다 */
-    transform: rotateY(45deg); 
+    transform: rotateY(45deg);
 }
+
+/* 2. 클릭 시: 뒷표지가 보이도록 -180도 회전 */
+.book-container.flipped .book-inner {
+    transform: rotateY(180deg);
+}
+
+
+
+
+
+/* -------------------------------------------------------------------------------- */
+
+
+#card_review {
+    width: 700px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+}
+
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #444;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 1. 화살표 버튼 자체의 크기 (클릭 영역) 조절 */
+.swiper-button-next,
+.swiper-button-prev {
+    width: 30px !important;
+    height: 30px !important;
+    border-radius: 50%;
+    margin-top: -15px !important;
+    
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    font-size: 14px !important;
+    font-weight: bold !important;
+    color: #fff !important;
+}
+
+#card_review:hover .swiper-button-next,
+#card_review:hover .swiper-button-prev {
+    opacity: 1;
+    visibility: visible;
+}
+
+.swiper-button-next { right: 15px !important; }
+.swiper-button-prev { left: 15px !important; }
+
+
+/* ------------------------------------------------------------------ */
