@@ -22,6 +22,9 @@
 체질은 만들어진다 | 체질을 바꾸는 보이지 않는 설계자, 장내미생물 | 호르몬과 체질의 변화
 </p>
 <br><br>
+<details>
+<summary style="cursor: pointer; color: #888; font-weight: bold;">접기</summary>
+<div style="padding-top: 20px;">
 <h4>2부. 살찌지 않는 몸으로 신진대사를 재설계하라</h4>
 <br><br>
 <p>
@@ -53,3 +56,5 @@
 [부록 1] 음식 밖에서 보상 찾기: 새로운 보상 습관 설계<br>
 [부록 2] 나의 즐거움 사전 만들기: 자극 없는 만족을 찾는 기록<br>
 </p>
+</div>
+</details>

@@ -23,6 +23,31 @@
     /* 강조 빨간색 */
 }
 
+.tag {   
+    gap: 10px;           
+    margin: 10px 0;     
+}
+
+.tag div {
+    display: inline-block;
+    padding: 4px 10px;  
+    font-size: 12px;    
+    font-weight: bold;  
+    border-radius: 4px; 
+}
+
+.tag div {
+    background-color: transparent;
+    color: #007bff;                
+    border: 1px solid #007bff;
+}
+
+/* 스타일 2: 특정 태그만 강조하고 싶을 때 (선택사항) */
+.tag div:nth-child(2) {
+    background-color: #e3f2fd;
+    color: #007bff;
+    border: 1px solid #bbdefb;
+}
 
 /* --------------------------------------------------------------------------- */
 /* 책 커버 */
@@ -172,3 +197,4 @@
 
 
 /* ------------------------------------------------------------------ */
+
