@@ -1,5 +1,98 @@
 @charset "utf-8";
 
+.product-detail {
+    width: 1030px;
+    display: grid;
+    grid-template-columns: 620px minmax(0, 1fr);
+    column-gap: 80px;
+    align-items: start;
+    min-height: 600px;
+    padding: 30px 0 100px;
+    overflow: visible;
+}
+
+.cover-area {
+    position: relative;
+    z-index: 1;
+    width: 620px;
+    min-height: 560px;
+    overflow: visible;
+}
+
+#thumnail {
+    position: relative;
+    width: 620px;
+    min-height: 560px;
+    overflow: visible;
+}
+
+.info-area {
+    position: relative;
+    z-index: 2;
+    min-width: 0;
+    padding-top: 20px;
+    background-color: #fff;
+}
+
+.info-area .tag {
+    margin: 0 0 14px;
+}
+
+#main_title h1 {
+    font-size: 32px;
+    line-height: 1.35;
+    color: #222;
+}
+
+#sub_title {
+    margin-top: 12px;
+}
+
+#authors,
+#datetime {
+    margin-top: 8px;
+    color: #666;
+}
+
+.info-area #mileage {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    min-height: 28px;
+}
+
+.info-area #mileage h4 {
+    margin: 0;
+}
+
+.info-area #shipping_info {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    min-height: 28px;
+    margin-top: 10px;
+}
+
+.info-area #shipping_info h4 {
+    margin: 0;
+    line-height: 28px;
+}
+
+.shipping-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+    text-align: right;
+}
+
+.info-area #mileage span,
+.shipping-text span {
+    line-height: 28px;
+}
+
 /* 가격정보 */
 
 .price-container {
@@ -198,3 +291,46 @@
 
 /* ------------------------------------------------------------------ */
 
+.product-detail + .container {
+    clear: both;
+    margin-top: 100px;
+}
+
+.purchase-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 24px;
+    width: 100%;
+}
+
+.purchase-actions button {
+    flex: 1;
+    height: 46px;
+    padding: 0 16px;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-buy {
+    border: 1px solid #53a3ff;
+    background-color: #53a3ff;
+    color: #fff;
+}
+
+.btn-buy:hover {
+    background-color: #2f89eb;
+    border-color: #2f89eb;
+}
+
+.btn-cart {
+    border: 1px solid #53a3ff;
+    background-color: #fff;
+    color: #53a3ff;
+}
+
+.btn-cart:hover {
+    background-color: #eef7ff;
+}
